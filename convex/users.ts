@@ -1,4 +1,4 @@
-import { internalMutation } from "./_generated/server";
+import { internalMutation, query } from "./_generated/server";
 import { v } from "convex/values";
 
 export const upsertFromClerk = internalMutation({
@@ -44,5 +44,28 @@ export const deleteFromClerk = internalMutation({
     if (user) {
       await ctx.db.delete(user._id);
     }
+  },
+});
+
+export const getUsers = query({
+  handler: async (ctx, args) => {
+    const identity = await ctx.auth.getUserIdentity();
+    if (!identity) throw new Error("User is unauthorized");
+
+    return await ctx.db.query("users").collect();
+  },
+});
+
+export const getUserByClerkId = query({
+  args: { clerkId: v.id("clerkId") },
+  handler: async (ctx, args) => {
+    const identity = await ctx.auth.getUserIdentity();
+    if (!identity) throw new Error("User is unauthorized");
+
+    const user = await ctx.db
+      .query("users")
+      .withIndex("by_clerk_id", (q) => q.eq("clerkId", args.clerkId))
+      .first();
+    return user;
   },
 });
