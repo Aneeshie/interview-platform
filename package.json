@@ -9,8 +9,10 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@clerk/clerk-react": "^5.32.0",
     "@clerk/nextjs": "^6.22.0",
     "@radix-ui/react-slot": "^1.2.3",
+    "@stream-io/video-react-sdk": "^1.18.6",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "convex": "^1.24.8",
@@ -18,6 +20,7 @@
     "next": "15.3.4",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
+    "svix": "^1.67.0",
     "tailwind-merge": "^3.3.1"
   },
   "devDependencies": {
