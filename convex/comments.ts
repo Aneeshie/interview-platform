@@ -1,6 +1,6 @@
 import { mutation, query } from "./_generated/server";
 import { v } from "convex/values";
-import { checkAuth } from "./utils/helpers";
+import { checkMutationAuth } from "./utils/helpers";
 //write comment
 export const writeComment = mutation({
   args: {
@@ -9,7 +9,7 @@ export const writeComment = mutation({
     rating: v.number(),
   },
   handler: async (ctx, args) => {
-    const identity = await checkAuth(ctx);
+    const identity = await checkMutationAuth(ctx);
 
     return await ctx.db.insert("comments", {
       interviewId: args.interviewId,

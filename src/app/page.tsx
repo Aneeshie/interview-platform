@@ -9,15 +9,5 @@ import {
 import Image from "next/image";
 
 export default function Home() {
-  return (
-    <div>
-      <SignedOut>
-        <SignInButton />
-        <SignUpButton />
-      </SignedOut>
-      <SignedIn>
-        <UserButton />
-      </SignedIn>
-    </div>
-  );
+  return <div className="m-10">home page</div>;
 }

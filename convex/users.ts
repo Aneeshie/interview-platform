@@ -57,7 +57,7 @@ export const getUsers = query({
 });
 
 export const getUserByClerkId = query({
-  args: { clerkId: v.id("clerkId") },
+  args: { clerkId: v.string() },
   handler: async (ctx, args) => {
     const identity = await ctx.auth.getUserIdentity();
     if (!identity) throw new Error("User is unauthorized");
